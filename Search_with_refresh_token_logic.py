@@ -4,17 +4,18 @@ from pathlib import Path
 import pandas as pd
 #import requests, json, pprint, os
 
+### NEED to refactor a bit into a bunch of discrete functions
 
 # --- CONFIGURATION ---
 client_id = 'XXXXXXXXXXXXXXXX'
 client_secret = 'XXXXXXXXXXXXXX'
 token_url = "https://oauth.oclc.org/token"
-scope = "WorldCatMetadataAPI refresh_token"# context:105513"
-list_path = Path.home() / "Desktop" / "1afar.csv"
+scope = "WorldCatMetadataAPI refresh_token"
+list_path = Path.home() / "Desktop" / "list_of_OCLC_Numbers.csv" # path to csv containing OCLC numbers
 endpoint = "https://metadata.api.oclc.org/worldcat/search/bibs-summary-holdings"
 mpl_holdings = []
 counter = 0
-output_path = Path.home() / "Desktop" / "holdings.csv"
+output_path = Path.home() / "Desktop" / "holdings_for_my_oclc_numbers.csv" # path to output from API
 
 
 # Payload for the Client Credentials grant
@@ -51,9 +52,6 @@ def refresh_if_needed(current_token, r_token, last_time):
         else:
             raise Exception(f"Refresh failed: {response.text}")
     return current_token, last_time
-
-#test = refresh_if_needed(access_token, refresh_token, last_refresh)
-#print(test)
 
 with open(list_path, mode='r', newline='') as f:
     reader = csv.reader(f)
