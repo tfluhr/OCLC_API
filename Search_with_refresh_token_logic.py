@@ -4,14 +4,14 @@ from pathlib import Path
 import pandas as pd
 #import requests, json, pprint, os
 
-### NEED to refactor a bit into a bunch of discrete functions
+### NEED to refactor into discrete functions
 
 # --- CONFIGURATION ---
 client_id = 'XXXXXXXXXXXXXXXX'
 client_secret = 'XXXXXXXXXXXXXX'
 token_url = "https://oauth.oclc.org/token"
 scope = "WorldCatMetadataAPI refresh_token"
-list_path = Path.home() / "Desktop" / "list_of_OCLC_Numbers.csv" # path to csv containing OCLC numbers
+list_path = Path.home() / "Desktop" / "list_of_OCLC_Numbers.csv" # path to csv containing OCLC numbers.  this could be any sort of structured data file.
 endpoint = "https://metadata.api.oclc.org/worldcat/search/bibs-summary-holdings"
 mpl_holdings = []
 counter = 0
